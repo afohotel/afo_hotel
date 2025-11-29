@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply font-serif;
+  }
+
+  :root {
+    /* Added 'hsl(' wrapper to all color definitions to make them valid CSS colors */
+    --primary: hsl(43 55% 53%);
+    --primary-foreground: hsl(0 0% 0%);
+
+    --background: hsl(0 0% 0%);
+    --foreground: hsl(0 0% 96%);
+
+    --card: hsl(0 0% 10%);
+    --card-foreground: hsl(0 0% 96%);
+
+    --secondary: hsl(43 55% 53%);
+    --secondary-foreground: hsl(0 0% 0%);
+
+    --muted: hsl(0 0% 20%);
+    --muted-foreground: hsl(0 0% 67%);
+
+    --accent: hsl(43 55% 53%);
+    --accent-foreground: hsl(0 0% 0%);
+
+    --border: hsl(0 0% 27%);
+    --input: hsl(0 0% 33%);
+    --ring: hsl(43 55% 53%);
+
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(0 0% 98%);
+
+    --radius: 0.5rem;
+  }
+}
