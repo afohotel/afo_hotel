@@ -7,7 +7,7 @@ import Facilities from "./pages/Facilities";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/afo_hotel">
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
