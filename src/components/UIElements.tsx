@@ -1,4 +1,7 @@
-import { useScrollAnimation } from "../utils/utilities";
+import { useScrollAnimation, type roomData } from "../utils/utilities";
+
+//image imports
+const pageHeaderImage = "deluxe2.jpg";
 
 const Button: React.FunctionComponent<{ children: React.ReactNode }> = ({
   children,
@@ -18,54 +21,79 @@ const Button: React.FunctionComponent<{ children: React.ReactNode }> = ({
   );
 };
 
-const Hero: React.FunctionComponent<{
-  button?: React.ReactNode;
-  backgroundUrl: string;
-  heading: string;
-  para?: string;
-}> = ({ button, backgroundUrl, heading, para }) => {
+const Herro: React.FunctionComponent<{
+  children: React.ReactNode;
+  bgUrl?: string;
+}> = ({ children, bgUrl }) => {
   const { elementRef: sectionRef, isVisible } = useScrollAnimation();
 
   return (
     <div
       ref={sectionRef}
-      className="relative w-full h-[75vh] min-h-[550px] bg-center bg-cover bg-no-repeat overflow-hidden"
+      className="relative w-full h-[60vh] min-h-[550px] bg-center bg-cover bg-no-repeat overflow-hidden flex items-center justify-center"
       style={{
-        backgroundImage: `url("${backgroundUrl}")`,
+        backgroundImage: `url("${bgUrl || ""}")`,
       }}
     >
-      {/* Overlay Layers */}
-      <div className="absolute inset-0 bg-black/35" />
+      {/* Centered Div:
+        - bg-(--primary): Gold Background
+        - text-(--primary-foreground): Black Text (Contrast)
+        - shadow-2xl: Strong shadow for depth ("Attractive look")
+        - rounded-sm: Consistent with your theme
+      */}
+      <div
+        className={`
+          relative z-10 
+          w-[85%] max-w-[320px] md:max-w-[900px] min-h-[400px] justify-center
+          mx-4 p-8 md:p-12
+          bg-(--primary) 
+          text-(--primary-foreground) 
+          rounded-sm 
+          shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+          border-t border-white/20
+          flex flex-col items-center text-center gap-4
+          transition-all duration-1000 ease-out
+          ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }
+        `}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
 
-      <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto space-y-5">
-          {/* Heading: Slide In Down when visible */}
-          <h1
-            className={`text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-serif font-bold text-(--primary) tracking-wide drop-shadow-lg transition-opacity duration-700 ${
-              isVisible ? "animate-slide-in-down" : "opacity-0"
-            }`}
-          >
-            {heading}
-          </h1>
+const Hero: React.FunctionComponent<{
+  children: React.ReactNode;
+  bgUrl?: string;
+}> = ({ children, bgUrl }) => {
+  const { elementRef: sectionRef, isVisible } = useScrollAnimation();
 
-          {/* Paragraph: Slide In Up (Delayed) when visible */}
-          <p
-            className={`text-base sm:text-sm md:text-lg text-white font-light tracking-wider drop-shadow-md transition-opacity duration-700 ${
-              isVisible ? "animate-slide-in-up delay-200" : "opacity-0"
-            }`}
-          >
-            {para}
-          </p>
+  return (
+    <div
+      ref={sectionRef}
+      className="relative w-full min-h-[500px] bg-center bg-cover bg-no-repeat overflow-hidden flex items-center justify-center"
+      style={{
+        backgroundImage: `url("${bgUrl || ""}")`,
+      }}
+    >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/70" />
 
-          {/* Button: Slide In Up (More Delayed) when visible */}
-          <div
-            className={`pt-4 transition-opacity duration-700 ${
-              isVisible ? "animate-slide-in-up delay-400" : "opacity-0"
-            }`}
-          >
-            {button}
-          </div>
-        </div>
+      {/* Content wrapper with animation */}
+      <div
+        className={`
+          relative z-10 flex flex-col items-center justify-center text-center
+          transition-all duration-700
+          ${
+            isVisible
+              ? "animate-slide-in-up delay-100"
+              : "opacity-0 translate-y-10"
+          }
+        `}
+      >
+        {children}
       </div>
     </div>
   );
@@ -87,50 +115,50 @@ const RoomCard: React.FunctionComponent<{
     <div
       ref={cardRef}
       className={`
-        group flex flex-col w-full mx-auto bg-(--card) rounded-sm overflow-hidden shadow-lg 
-        transition-all duration-300 hover:shadow-2xl 
+        group flex flex-col w-full max-w-sm mx-auto bg-(--card) rounded-sm overflow-hidden shadow-lg 
+        transition-all duration-300 hover:shadow-2xl hover:border-(--primary/50)
         ${isCardVisible ? "animate-slide-in-up" : "opacity-0"}
       `}
     >
-      {/* 1. Image Section */}
-      <div className="w-full h-64 md:h-72 relative overflow-hidden">
+      {/* 1. Image Section: Reduced height to h-40/h-48 (approx 65% of previous size) */}
+      <div className="w-full h-40 md:h-48 relative overflow-hidden">
         <img
           src={image}
           alt={title}
           className="
-    absolute inset-0 w-full h-full object-cover
-    scale-100              
-    transition-transform duration-700 ease-out
-    group-hover:scale-102    
-  "
+            absolute inset-0 w-full h-full 
+            object-cover object-center 
+            transition-transform duration-700 ease-out 
+            group-hover:scale-105
+          "
         />
-        {/* Overlay: Adds a slight dark tint that vanishes on hover */}
-        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
       </div>
 
-      {/* 2. Content Section */}
-      <div className="w-full p-6 md:p-8 flex flex-col justify-center items-start text-left bg-(--card)">
-        {/* Header */}
-        <h3 className="text-2xl font-serif font-bold text-(--foreground) mb-4 tracking-wide group-hover:text-(--primary) transition-colors duration-300">
+      {/* 2. Content Section: Reduced padding to p-4/p-5 */}
+      <div className="w-full p-4 md:p-5 flex flex-col justify-center items-start text-left bg-(--card)">
+        {/* Header: Reduced font size to text-xl */}
+        <h3 className="text-xl md:text-2xl font-serif font-light text-(--foreground) mb-3 tracking-wide group-hover:text-(--primary) transition-colors duration-300">
           {title}
         </h3>
 
-        {/* List Items */}
-        <ul className="space-y-3 mb-8 w-full">
+        {/* List Items: Reduced font size to text-xs */}
+        <ul className="space-y-2 mb-6 w-full">
           {features.map((feature, index) => (
             <li
               key={index}
-              className="flex items-center text-(--muted-foreground) text-sm font-light"
+              className="flex items-center text-(--muted-foreground) text-xs md:text-sm font-light"
             >
-              {/* Custom Gold Bullet Point */}
-              <span className="w-1.5 h-1.5 bg-(--primary) rounded-full mr-3 shrink-0" />
+              <span className="w-1.5 h-1.5 bg-(--primary) rounded-full mr-2 shrink-0" />
               {feature}
             </li>
           ))}
         </ul>
 
-        {/* Book Now Button - Full width for better UX on cards */}
+        {/* Book Now Button */}
         <div className="mt-auto w-full">
+          {/* Added class override to make button slightly more compact */}
           <Button>Book Now</Button>
         </div>
       </div>
@@ -138,4 +166,79 @@ const RoomCard: React.FunctionComponent<{
   );
 };
 
-export { Button, Hero, RoomCard };
+// Sub-component to handle individual section animation and layout
+const RoomSection: React.FunctionComponent<{
+  title: string;
+  description: string;
+  roomData: roomData;
+  reverse?: boolean;
+}> = ({ title, description, roomData, reverse = false }) => {
+  const { elementRef, isVisible } = useScrollAnimation();
+
+  return (
+    <div
+      ref={elementRef}
+      className={`
+        w-full flex flex-col items-center gap-12 py-12
+        ${reverse ? "md:flex-row-reverse" : "md:flex-row"}
+      `}
+    >
+      {/* Text Content Side */}
+      <div className="w-full md:w-1/2 hidden md:flex flex-col gap-6 px-4 md:px-8 text-center md:text-left">
+        <h3
+          className={`
+            text-3xl md:text-4xl font-serif font-light text-(--primary) 
+            transition-opacity duration-700
+            ${isVisible ? "animate-slide-in-up" : "opacity-0"}
+          `}
+        >
+          {title}
+        </h3>
+        <p
+          className={`
+            text-base md:text-lg font-light text-(--muted-foreground) leading-relaxed tracking-wide
+            transition-opacity duration-700
+            ${isVisible ? "animate-slide-in-up delay-200" : "opacity-0"}
+          `}
+        >
+          {description}
+        </p>
+      </div>
+
+      {/* Card Side */}
+      <div className="w-full md:w-1/2 flex justify-center px-4">
+        <RoomCard
+          image={roomData.image}
+          title={roomData.title}
+          features={roomData.features}
+        />
+      </div>
+    </div>
+  );
+};
+
+const PageHeader: React.FunctionComponent<{
+  title: string;
+}> = ({ title = "Page Title" }) => {
+  return (
+    <div
+      className="relative w-full h-14 md:h-16  bg-cover bg-no-repeat overflow-hidden"
+      style={{
+        backgroundImage: `url("${pageHeaderImage}")`,
+      }}
+    >
+      {/* Overlay: Primary Gold with high opacity for the 'solid' look */}
+      <div className="absolute inset-0 bg-(--primary) mix-blend-multiply" />
+
+      {/* Content Container: Flex aligned to the right */}
+      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-end right-8 md:right-12">
+        {/* Header Text */}
+        <h1 className="text-xl md:text-2xl font-serif font-bold text-white tracking-wide uppercase animate-slide-in-right">
+          {title}
+        </h1>
+      </div>
+    </div>
+  );
+};
+
+export { Button, Hero, RoomCard, Herro, RoomSection, PageHeader };

@@ -1,4 +1,5 @@
-import { Hero, Button } from "../components/UIElements";
+import FacilitiesSection from "../components/FacilitiesSection";
+import { Hero, Herro } from "../components/UIElements";
 import { useScrollAnimation } from "../utils/utilities";
 
 // image urls
@@ -13,33 +14,39 @@ const HomePage = () => {
 
   return (
     <>
-      <Hero
-        button={<Button children={<a href="#">Explore</a>} />}
-        backgroundUrl={heroBackground}
-        heading="WELCOME TO AFO HOTEL & SUITE"
-        para="Good people. Good thinking. Good feeling"
+      <Herro
+        children={
+          <>
+            <h1 className="text-3xl mb-4 md:text-5xl font-serif font-light text-(--primary-foreground) tracking-wide transition-opacity duration-700 animate-slide-in-down">
+              WELCOME TO AFO HOTEL & SUITE
+            </h1>
+
+            <p className="text-lg md:text-md text-(--primary-foreground)/80 font-light tracking-wider transition-opacity duration-700 animate-slide-in-up delay-200">
+              Good People. Good Thinking. Good Feeling.
+            </p>
+          </>
+        }
+        bgUrl={heroBackground}
       />
 
       {/* About section */}
       <section
         ref={aboutRef}
-        className="bg-zinc-50 py-12 sm:py-16 lg:py-20 overflow-hidden"
+        className="bg-zinc-50 mt-8 py-12 sm:py-16 lg:py-20 overflow-hidden"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Layout: Stacks on mobile (grid-cols-1), Side-by-side on desktop (md:grid-cols-2) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Column: Text Content - Slides up when visible */}
+          <div className="grid grid-cols-1 px-5 md:px-10 md:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div
               className={`flex flex-col justify-center text-left transition-opacity duration-1000 ${
                 isAboutVisible ? "animate-slide-in-up" : "opacity-0"
               }`}
             >
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-zinc-900 mb-4 tracking-wide">
-                Redefining Luxury <br />
-                <span className="text-(--primary)">in the Heart of Lagos</span>
+              <h2 className="text-2xl md:text-3xl font-serif font-light text-zinc-900 mb-4 tracking-wide">
+                REDEFINING LUXURY <br />
+                <span className="text-(--primary)">IN THE HEART OF LAGOS</span>
               </h2>
 
-              <div className="space-y-4 text-zinc-600 text-sm sm:text-base leading-relaxed font-light">
+              <div className="space-y-4 text-(--muted-foreground) text-sm sm:text-base leading-relaxed font-light">
                 <p>
                   Welcome to{" "}
                   <strong className="text-zinc-900">AFO Hotel & Suite</strong>,
@@ -60,7 +67,7 @@ const HomePage = () => {
 
             {/* Right Column: Image Section - Fades in with delay when visible */}
             <div
-              className={`relative h-[300px] md:h-[400px] w-full rounded-sm overflow-hidden border border-(--primary/20) shadow-lg group transition-opacity duration-1000 ${
+              className={`relative h-[250px] md:h-[350px] w-full rounded-sm overflow-hidden  shadow-lg group transition-opacity duration-1000 ${
                 isAboutVisible ? "animate-fade-in delay-200" : "opacity-0"
               }`}
             >
@@ -69,21 +76,35 @@ const HomePage = () => {
                 src={abRoom}
                 alt="AFO Hotel Luxury Interior"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
               />
 
               {/* Overlay: Subtle tint for image depth */}
-              <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Facilities */}
+      <FacilitiesSection />
+
       {/* Events */}
-      <Hero
-        backgroundUrl={lounge}
-        heading="CELEBRATE IN STYLE"
-        para="Lagos's premier destination for exclusive events. Exceptional spaces, exquisite catering, and a team dedicated to making your occasion flawless. From high-profile corporate galas to intimate private celebrations, our versatile venues offer a sophisticated backdrop tailored to your unique vision. Experience the pinnacle of hospitality where state-of-the-art facilities meet timeless elegance, ensuring every moment of your event is nothing short of extraordinary."
-      />
+      <Hero bgUrl={lounge}>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-serif font-light text-(--primary) tracking-widest uppercase mb-7">
+          WE HOST PARTIES AND EVENTS
+        </h1>
+
+        <p className="text-xs sm:text-sm md:text-lg font-light text-white/80 tracking-wide max-w-lg leading-relaxed">
+          Lagos's premier destination for exclusive events. Exceptional spaces,
+          exquisite catering, and a team dedicated to making your occasion
+          flawless. From high-profile corporate galas to intimate private
+          celebrations, our versatile venues offer a sophisticated backdrop
+          tailored to your unique vision. Experience the pinnacle of hospitality
+          where state-of-the-art facilities meet timeless elegance, ensuring
+          every moment of your event is nothing short of extraordinary.
+        </p>
+      </Hero>
 
       {/* CTA */}
       <section
@@ -93,7 +114,7 @@ const HomePage = () => {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <h2
-              className={`text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-zinc-900 tracking-wide transition-opacity duration-700 ${
+              className={`text-3xl md:text-4xl lg:text-5xl font-serif font-light text-zinc-900 tracking-wide transition-opacity duration-700 ${
                 isCtaVisible ? "animate-slide-in-left" : "opacity-0"
               }`}
             >

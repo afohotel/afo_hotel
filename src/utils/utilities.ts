@@ -3,9 +3,14 @@ import { useEffect, useRef, useState } from "react";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Rooms", href: "/Rooms" },
-  { name: "Facilities", href: "/Facilities" },
+  { name: "Gallery", href: "/Gallery" },
   { name: "Contact", href: "/Contact" },
 ];
+interface roomData {
+  image: string;
+  title: string;
+  features: string[];
+}
 
 const linkClass = ({ isActive }: { isActive: boolean }): string => {
   const baseClasses =
@@ -51,4 +56,4 @@ const useScrollAnimation = (threshold = 0.1) => {
   return { elementRef, isVisible };
 };
 
-export { navLinks, linkClass, useScrollAnimation };
+export { navLinks, linkClass, useScrollAnimation, type roomData };
