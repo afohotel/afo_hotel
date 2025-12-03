@@ -48,7 +48,7 @@ const Herro: React.FunctionComponent<{
       <div
         className={`
           relative z-10 
-          w-[85%] max-w-[320px] md:max-w-[900px] min-h-[480px] justify-center
+          w-[88%] max-w-[320px] md:max-w-[900px] min-h-[490px] justify-center
           mx-4 p-8 md:p-12
 
           bg-[var(--primary)]/50

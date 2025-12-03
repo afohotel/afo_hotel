@@ -127,7 +127,7 @@ const HomePage = () => {
               }`}
             >
               <a
-                href="https://wa.me/8024409982?text=I%20want%20to%20make%20enquiries%20about%20availability%20and%20pricing"
+                href="https://wa.me/2348024409982?text=I%20want%20to%20make%20enquiries%20about%20availability%20and%20pricing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
