@@ -15,12 +15,16 @@ const deluxeRoomData: roomData = {
     "Study/Dining Table",
     "Well Spacious",
   ],
+  message:
+    "I'd like to know the availability and pricing of the Deluxe room for the dates of _______.",
 };
 
 const standardRoomData: roomData = {
   image: standard2,
   title: "Standard Room",
   features: ["2 People", "Wall fan", "A/C", "1 Bathroom", "Well Spacious"],
+  message:
+    "I'd like to know the availability and pricing of the Standard room for the dates of _______.",
 };
 
 const Rooms = () => {

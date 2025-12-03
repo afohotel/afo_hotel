@@ -32,7 +32,7 @@ const HomePage = () => {
       {/* About section */}
       <section
         ref={aboutRef}
-        className="bg-zinc-50 mt-8 py-12 sm:py-16 lg:py-20 overflow-hidden"
+        className="bg-zinc-50 py-16 lg:py-20 overflow-hidden"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 px-5 md:px-10 md:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -95,7 +95,7 @@ const HomePage = () => {
           WE HOST PARTIES AND EVENTS
         </h1>
 
-        <p className="text-xs sm:text-sm md:text-lg font-light text-white/80 tracking-wide max-w-lg leading-relaxed">
+        <p className="text-xs sm:text-sm md:text-lg font-light px-4 md:px-0 text-white/80 tracking-wide max-w-lg leading-relaxed">
           Lagos's premier destination for exclusive events. Exceptional spaces,
           exquisite catering, and a team dedicated to making your occasion
           flawless. From high-profile corporate galas to intimate private
@@ -126,7 +126,10 @@ const HomePage = () => {
                 isCtaVisible ? "animate-slide-in-right delay-200" : "opacity-0"
               }`}
             >
-              <button
+              <a
+                href="https://wa.me/8024409982?text=I%20want%20to%20make%20enquiries%20about%20availability%20and%20pricing"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="
               inline-block
               px-10 py-4 
@@ -140,8 +143,8 @@ const HomePage = () => {
               cursor-pointer
             "
               >
-                Book Now
-              </button>
+                <span>Book Now</span>
+              </a>
             </div>
           </div>
         </div>

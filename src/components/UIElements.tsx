@@ -3,11 +3,15 @@ import { useScrollAnimation, type roomData } from "../utils/utilities";
 //image imports
 const pageHeaderImage = "deluxe2.jpg";
 
-const Button: React.FunctionComponent<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const Button: React.FunctionComponent<{
+  children: React.ReactNode;
+  url: string;
+}> = ({ children, url }) => {
   return (
-    <button
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
       className="  px-9 py-2
               bg-(--primary) text-(--primary-foreground)
               text-xs md:text-md font-light tracking-[0.1em]
@@ -17,7 +21,7 @@ const Button: React.FunctionComponent<{ children: React.ReactNode }> = ({
               focus:outline-none focus:ring-2 focus:ring-(--primary) focus:ring-offset-2 focus:ring-offset-white"
     >
       {children}
-    </button>
+    </a>
   );
 };
 
@@ -44,9 +48,13 @@ const Herro: React.FunctionComponent<{
       <div
         className={`
           relative z-10 
-          w-[85%] max-w-[320px] md:max-w-[900px] min-h-[400px] justify-center
+          w-[85%] max-w-[320px] md:max-w-[900px] min-h-[480px] justify-center
           mx-4 p-8 md:p-12
-          bg-(--primary) 
+
+          bg-[var(--primary)]/50
+          backdrop-blur-md
+
+
           text-(--primary-foreground) 
           rounded-sm 
           shadow-[0_20px_50px_rgba(0,0,0,0.3)]
@@ -103,10 +111,12 @@ const RoomCard: React.FunctionComponent<{
   image: string;
   title: string;
   features: string[];
+  message: string;
 }> = ({
   image = "room-placeholder.jpg",
   title = "Executive Suite",
   features = ["King Size Bed & Jacuzzi", "Complimentary Breakfast & WiFi"],
+  message,
 }) => {
   const { elementRef: cardRef, isVisible: isCardVisible } =
     useScrollAnimation();
@@ -159,7 +169,7 @@ const RoomCard: React.FunctionComponent<{
         {/* Book Now Button */}
         <div className="mt-auto w-full">
           {/* Added class override to make button slightly more compact */}
-          <Button>Book Now</Button>
+          <WhatsAppEnquiry message={message} />
         </div>
       </div>
     </div>
@@ -211,6 +221,7 @@ const RoomSection: React.FunctionComponent<{
           image={roomData.image}
           title={roomData.title}
           features={roomData.features}
+          message={roomData.message}
         />
       </div>
     </div>
@@ -233,7 +244,7 @@ const PageHeader: React.FunctionComponent<{
       {/* Content Container: Flex aligned to the right */}
       <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-end right-8 md:right-12">
         {/* Header Text */}
-        <h1 className="text-xl md:text-2xl font-serif font-bold text-white tracking-wide uppercase animate-slide-in-right">
+        <h1 className="text-xl md:text-2xl font-serif font-light text-white tracking-wide uppercase animate-slide-in-right">
           {title}
         </h1>
       </div>
@@ -241,4 +252,21 @@ const PageHeader: React.FunctionComponent<{
   );
 };
 
-export { Button, Hero, RoomCard, Herro, RoomSection, PageHeader };
+const WhatsAppEnquiry: React.FunctionComponent<{ message: string }> = ({
+  message,
+}) => {
+  const phone = "2348024409982";
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  return <Button url={url} children={<span>Book Now</span>} />;
+};
+
+export {
+  Button,
+  Hero,
+  RoomCard,
+  Herro,
+  RoomSection,
+  PageHeader,
+  WhatsAppEnquiry,
+};

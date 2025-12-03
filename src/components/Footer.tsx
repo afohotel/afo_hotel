@@ -106,7 +106,7 @@ const Footer = () => {
               isVisible ? "animate-slide-in-up delay-400" : "opacity-0"
             }`}
           >
-            <p className="text-md font-serif font-medium text-(--foreground) mb-4">
+            <p className="text-md font-serif font-light text-(--foreground) mb-4">
               Contact Us:
             </p>
 
@@ -166,7 +166,7 @@ const Footer = () => {
               <div className="flex justify-center md:justify-start gap-6 mt-2">
                 {/* Instagram Icon (SVG) */}
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/afohotelandsuite/"
                   target="_blank"
                   rel="noreferrer"
                   className="group p-3 rounded-full border border-(--input) hover:border-(--primary) transition-all duration-300"
@@ -192,7 +192,7 @@ const Footer = () => {
 
                 {/* TikTok Icon (SVG) */}
                 <a
-                  href="https://tiktok.com"
+                  href="https://www.tiktok.com/@afo_hotel?is_from_webapp=1&sender_device=pc"
                   target="_blank"
                   rel="noreferrer"
                   className="group p-3 rounded-full border border-(--input) hover:border-(--primary) transition-all duration-300"

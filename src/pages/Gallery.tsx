@@ -95,7 +95,7 @@ const Gallery: React.FunctionComponent = () => {
             </h2>
             <p className="text-(--muted-foreground) max-w-2xl mx-auto text-sm sm:text-base font-light leading-relaxed">
               A glimpse into the elegance, comfort, and luxury that awaits you
-              at AFO Hotel & Suite.
+              at <strong className="text-zinc-900">AFO Hotel & Suite</strong>.
             </p>
           </div>
 

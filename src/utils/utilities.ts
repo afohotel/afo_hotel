@@ -10,6 +10,7 @@ interface roomData {
   image: string;
   title: string;
   features: string[];
+  message: string;
 }
 
 const linkClass = ({ isActive }: { isActive: boolean }): string => {
