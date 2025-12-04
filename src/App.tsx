@@ -7,7 +7,7 @@ import Gallery from "./pages/Gallery";
 
 function App() {
   return (
-    <BrowserRouter basename="/afo_hotel">
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
